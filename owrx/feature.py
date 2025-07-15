@@ -58,6 +58,7 @@ class FeatureDetector(object):
         "rtl_tcp": ["rtl_tcp_connector"],
         "sdrplay": ["soapy_connector", "soapy_sdrplay"],
         "mirics": ["soapy_connector", "soapy_mirics"],
+        "miri_tcp": ["miri_tcp_connector"],
         "hackrf": ["soapy_connector", "soapy_hackrf"],
         "perseussdr": ["perseustest", "nmux"],
         "airspy": ["soapy_connector", "soapy_airspy"],
@@ -357,6 +358,15 @@ class FeatureDetector(object):
         library.
         """
         return self._has_soapy_driver("soapyMiri")
+
+    def has_miri_tcp_connector(self):
+        """
+        The [OWRX Connector](https://github.com/luarvique/owrx_connector)
+        provides direct interfacing between networked MIRI-SDR hardware and
+        OpenWebRX+. You can install the `owrx-connector` package from the
+        OpenWebRX+ repositories.
+        """
+        return self._check_owrx_connector("miri_tcp_connector")
 
     def has_soapy_airspy(self):
         """
