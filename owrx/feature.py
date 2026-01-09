@@ -59,6 +59,7 @@ class FeatureDetector(object):
         "sdrplay": ["soapy_connector", "soapy_sdrplay"],
         "mirics": ["soapy_connector", "soapy_mirics"],
         "malahit_rr": ["soapy_connector", "soapy_malahit_rr"],
+        "gnuradio_tcp": ["gnuradio_tcp_connector"],
         "hackrf": ["soapy_connector", "soapy_hackrf"],
         "perseussdr": ["perseustest", "nmux"],
         "airspy": ["soapy_connector", "soapy_airspy"],
@@ -370,6 +371,15 @@ class FeatureDetector(object):
         `soapysdr-module-malahit-rr` package from the OpenWebRX+ repositories.
         """
         return self._has_soapy_driver("malahitrr")
+
+    def has_gnuradio_tcp_connector(self):
+        """
+        The [OWRX Connector](https://github.com/luarvique/owrx_connector)
+        provides direct interfacing between GNURadio TCP Sinks interfaces and
+        OpenWebRX+. You can install the `owrx-connector` package from the
+        OpenWebRX+ repositories.
+        """
+        return self._check_owrx_connector("gnuradio_tcp_connector")
 
     def has_soapy_airspy(self):
         """
