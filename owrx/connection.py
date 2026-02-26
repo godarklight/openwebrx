@@ -564,8 +564,9 @@ class OpenWebRxReceiverClient(OpenWebRxClient, SdrSourceEventClient):
                 res["bandpass"] = {"low_cut": m.bandpass.low_cut, "high_cut": m.bandpass.high_cut}
             if m.ifRate is not None:
                 res["ifRate"] = m.ifRate
-            if isinstance(m, DigitalMode):
+            if m.underlying is not None:
                 res["underlying"] = m.underlying
+            if isinstance(m, DigitalMode):
                 res["secondaryFft"] = m.secondaryFft
             return res
 
