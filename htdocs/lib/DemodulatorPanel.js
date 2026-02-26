@@ -20,7 +20,7 @@ function DemodulatorPanel(el) {
     el.on('click', '.openwebrx-demodulator-button', function() {
         var modulation = $(this).data('modulation');
         if (modulation) {
-            if (self.mode && self.mode.type === 'digimode' && self.mode.underlying.indexOf(modulation) >= 0) {
+            if (self.mode && self.mode.underlying && self.mode.underlying.indexOf(modulation) >= 0) {
                 // keep the mode, just switch underlying modulation
                 self.setMode(self.mode.modulation, modulation)
             } else {
@@ -101,11 +101,7 @@ DemodulatorPanel.prototype.setMode = function(requestedModulation, underlyingMod
     }
 
     var modulation;
-    if (mode.type !== 'digimode') {
-        // analog modes have no underlying modulation
-        underlyingModulation = undefined;
-        modulation = mode.modulation;
-    } else if (underlyingModulation) {
+    if (underlyingModulation) {
         // use given underlying modulation
         modulation = underlyingModulation;
     } else if (mode.underlying.indexOf(this.underlyingModulation) >= 0) {
